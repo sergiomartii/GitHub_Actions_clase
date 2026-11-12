@@ -1,9 +1,10 @@
 
+name: Output
 
 on:
   workflow_dispatch:
     inputs:
-      thename:  
+      thename:
         description: 'What is your name?'
         required: true
         type: string
@@ -14,4 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "Hello there, ${{ inputs.thename }}!"
+      - id: get-time
+        name: Grab the current time
+        run: |
+          curTime=$(date)
+          echo "currenttime=${curTime}" >> "$GITHUB_OUTPUT"
+
+      - name: Display the current time
+        run: echo "The time from the early step is ${{ steps['get-time'].outputs.currenttime }}"
