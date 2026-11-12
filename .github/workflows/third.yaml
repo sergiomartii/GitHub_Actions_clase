@@ -1,10 +1,9 @@
 
-name: Welcome to the party (third)
 
 on:
   workflow_dispatch:
     inputs:
-      thename:
+      thename:  
         description: 'What is your name?'
         required: true
         type: string
